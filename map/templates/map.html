@@ -1,0 +1,435 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!--head start-->
+
+<head>
+    <!--meta tag start-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!--title-->
+    <title>Umakunda</title>
+    
+    <!-- faveicon start   -->
+    <link rel="icon" type="image/png" href="images/favicon.png" sizes="32x32">
+    
+    <!-- stylesheet start -->
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'map/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'map/css/customfonts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'map/css/ionicons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'map/css/select2.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'map/css/c3.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin="" />
+    <link rel="stylesheet" type="text/css" href="{% static 'map/css/style.css' %}">
+    
+</head>
+<!--head end-->
+
+<body>
+    <!-- bipad start -->
+    <div class="bipadContent">
+
+        <!-- mapsection start -->
+        <div class="mapwrap">
+
+            <!-- logo start -->
+            <div class="bipad-logo">
+                <h1 class="logo"><a href="index.html">Umakunda</a></h1>
+                <span class="sub-logo">Profile</span>
+            </div>
+
+            <!-- map start -->
+            <div id="mapid"></div>
+            
+            <!-- right navigation -->
+            
+            <div class="expand-layer">
+                <span class="expand-icon" id="flood-expand">
+                    <i class="ion ion-md-funnel"></i>
+                </span>
+                <span class="expand-icon" id="capacity-expand">
+                    <i class="ion ion-md-funnel"></i>
+                </span>
+                <span class="expand-icon" id="vulnery-expand">
+                    <i class="ion ion-md-funnel"></i>
+                </span>
+            </div>
+            <!-- map layer list -->
+            <div class="buffer-list">
+                <div class="buffer-header">
+                    <h4>Maplayer</h4>
+                    <span><i class="ion ion-md-close"></i></span>
+                </div>
+                <ul>
+                    <li class="light"><a href="#">Light</a></li>
+                    <li class="street"><a href="#">street</a></li>
+                    <li class="outdoor"><a href="#">outdoor</a></li>
+                    <li class="satelite"><a href="#">satelite</a></li>
+                    <li class="road"><a href="#">Roads</a></li>
+                </ul>
+            </div>
+            <!-- legend layer list -->
+            <div class="legend-list">
+                <div class="buffer-header">
+                    <h4>Legend</h4>
+                    <span><i class="ion ion-md-close"></i></span>
+                </div>
+                <ul>
+                    <li class="light"><a href="#">Light</a></li>
+                    <li class="street"><a href="#">street</a></li>
+                    <li class="outdoor"><a href="#">outdoor</a></li>
+                    <li class="satelite"><a href="#">satelite</a></li>
+                    <li class="road"><a href="#">Roads</a></li>
+                </ul>
+            </div>
+
+            <!-- leftSidebar start -->
+            <div class="sidebar leftSidebar">
+                    <!-- <span class="expand-icon">
+                        <i class="ion ion-ios-warning"></i>
+                    </span> -->
+                    <div class="sidebarwrapper">
+                        <div class="leftSidebar-header">
+                            <h4>Service</h4>
+                            <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>
+                            <button type="button" class="button sidebarClose"><i class=" ion ion-ios-arrow-up"></i></button>
+                        </div>
+                        <div class="sidebar-widget">
+                            <ul class="list-content">
+                                <li><a href="#" target="">Total population</a><span>113456</span></li>
+                                <li><a href="#" target="">Area (sq/km)</a><span>43634</span></li>
+                                <li><a href="#" target="">population density</a><span>4567789</span></li>
+                                <li><a href="#" target="">Poverty rate</a><span>57568569</span></li>
+                                <li><a href="#" target="">Population under poverty rate</a><span>5685698</span></li>
+                                <li><a href="#" target="">HD</a><span>45363</span></li>
+                                <li><a href="#" target="">GDP</a><span>769768</span></li>
+                                <li><a href="#" target="">Index</a><span>45363</span></li>
+                                <li><a href="#" target="">Per income</a><span>769768</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <!-- rightSidebar start -->
+            <div class=" sidebar rightSidebar">
+                <!-- <span class="expand-icon">
+                    <i class="ion ion-md-funnel"></i>
+                </span> -->
+                <div class="sidebarwrapper">
+                    <!-- sidebar start -->
+           
+                    <div class="hazard-acc">
+                        <div id="sidebar-widget">
+                            <div class="card">
+                                <div class="card-header" id="heading-1">
+                                    <h5>
+                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true"
+                                            aria-controls="collapse-1">Hazard
+                                            <i class="ion ion-md-information-circle"></i>
+                                            <div class="info">
+                                                <div class="info-content">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapse-1" class="collapse show" data-parent="#sidebar-widget" aria-labelledby="heading-1">
+                                    <div class="card-body">
+                                        <ul class="list-content hazard-list">
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Flood" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Flood" data-tab="flood-1">Flood </label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Flood"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Earthquacke" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Earthquacke">Earthquacke</label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Earthquake"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Landslide" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Landslide">Landslide</label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Landslide-mudslide"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Fire" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Fire">Fire</label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Fire"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Draought" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Draought">Draought</label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Drought"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading-2">
+                                    <h5>
+                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false"
+                                        aria-controls="collapse-2">Exposure 
+                                            <i class="ion ion-md-information-circle"></i>
+                                            <div class="info">
+                                                <div class="info-content">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </h5>
+                                </div>
+                                <div id="collapse-2" class="collapse" data-parent="#sidebar-widget" aria-labelledby="heading-2">
+                                    <div class="card-body">
+                                        <ul class="list-content hazard-list">
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="OSM" name="exposure_1" value="customEx">
+                                                    <label class="custom-control-label" for="OSM">OSM </label>
+                                                </div> 
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Land" name="exposure_1" value="customEx">
+                                                    <label class="custom-control-label" for="Land">Land Use Details</label>
+                                                </div> 
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading-3">
+                                    <h5>
+                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false"
+                                        aria-controls="collapse-3">Vulnerability 
+                                            <i class="ion ion-md-information-circle"></i>
+                                            <div class="info">
+                                                <div class="info-content">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </h5>
+                                </div>
+                                <div id="collapse-3" class="collapse" data-parent="#sidebar-widget" aria-labelledby="heading-3">
+                                    <div class="card-body">
+                                        <ul class="list-content hazard-list">
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="HDI" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="HDI">HDI </label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Helipad"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="GDP" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="GDP" data-tab="vulnery-1">GDP</label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Fund"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="percapital" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="percapital">per capital income</label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Fund"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading-4">
+                                    <h5>
+                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false"
+                                        aria-controls="collapse-4">Risk 
+                                            <i class="ion ion-md-information-circle"></i>
+                                            <div class="info">
+                                                <div class="info-content">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </h5>
+                                </div>
+                                <div id="collapse-4" class="collapse" data-parent="#sidebar-widget" aria-labelledby="heading-4">
+                                    <div class="card-body">
+                                        <ul class="list-content hazard-list">
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Flood" name="risk" value="customEx">
+                                                    <label class="custom-control-label" for="Flood">Health </label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Health"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Earthquacke" name="risk" value="customEx">
+                                                    <label class="custom-control-label" for="Earthquacke">Education</label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Education"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Landslide" name="risk" value="customEx">
+                                                    <label class="custom-control-label" for="Landslide">communication</label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Emergency-Telecommunications"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Fire" name="risk" value="customEx">
+                                                    <label class="custom-control-label" for="Fire">Health</label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Health"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="Draought" name="risk" value="customEx">
+                                                    <label class="custom-control-label" for="Draought">Education</label>
+                                                </div> 
+                                                <span class="humanitarian-icon-Education"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading-5">
+                                    <h5>
+                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false"
+                                        aria-controls="collapse-5">capacity & resources 
+                                            <i class="ion ion-md-information-circle"></i>
+                                            <div class="info">
+                                                <div class="info-content">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </h5>
+                                </div>
+                                <div id="collapse-5" class="collapse" data-parent="#sidebar-widget" aria-labelledby="heading-5">
+                                    <div class="card-body">
+                                        <ul class="list-content hazard-list">
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="checkbox" class="custom-control-input custom-main-input" id="capacity-1" >
+                                                    <label class="custom-control-label" for="capacity-1" data-tab="capacity-popup">Health </label>
+                                                </div> 
+                                            </li>
+                                            <li class="check-list">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="checkbox" class="custom-control-input custom-main-input" id="capacity-2" >
+                                                    <label class="custom-control-label" for="capacity-2">Health </label>
+                                                </div> 
+                                            </li>
+                                            <li class="check-list">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="checkbox" class="custom-control-input custom-main-input" id="capacity-3" >
+                                                    <label class="custom-control-label" for="capacity-3">Health </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- hazard popup -->
+     
+
+            <!-- capacity popup -->
+
+
+            <!-- rightSidebar end -->
+            <div class="data-sidebar">
+                <div class="sidebarwrapper">
+                    <div class="leftSidebar-header">
+                        <h4>Data visualization</h4>
+                        <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>
+                        <button type="button" class="button sidebarClose"><i class=" ion ion-ios-arrow-up"></i></button>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-header">
+                                    <h5>Health Facilities</h5>
+                                </div>
+                                <div class="health-facility">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div id="chart-pie" class="c3_chart"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="chart-bar-rotated" class="c3_chart"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="chart-bar" class="c3_chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="acadamic-facility">
+                                <div class="card-header">
+                                        <h5>Acadamic Institutions</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div id="acadamic-spiline" class="c3_chart"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="chart-area-spline-sracked" class="c3_chart"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="lineGraph" class="c3_chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mapsection end -->
+    </div>
+    <!-- bipad end -->
+    
+   
+        
+    <!-- js library start -->
+    <script src="{% static 'map/js/jquery-3.3.1.min.js' %}"></script>
+    <!-- <script src="js/popper.min.js"></script> -->
+    <script src="{% static 'map/js/bootstrap.min.js' %}"></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+    <script src="{% static 'map/js/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'map/js/select2.min.js' %}"></script>
+    <script src="{% static 'map/js/d3.min.js' %}"></script>
+    <!-- <script src="js/chart.js"></script>
+	<script src="js/c3.js"></script> -->
+   <script src="{% static 'map/js/map.js' %}"></script>
+    <script src="{% static 'map/js/script.js' %}"></script>
+    
+</body>
+
+</html>
