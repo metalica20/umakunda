@@ -27,6 +27,8 @@
       crossorigin="" />
     <link rel="stylesheet" type="text/css" href="{% static 'map/css/style.css' %}">
     
+    
+
 </head>
 <!--head end-->
 
@@ -43,6 +45,17 @@
                 <span class="sub-logo">Profile</span>
             </div>
 
+        <div class="loader_img">
+            <div class="loader">
+
+                
+            </div>
+
+            <span id="loader_text">Loading Map Pleae Wait...</span>
+
+        </div>
+               
+            
             <!-- map start -->
             <div id="mapid"></div>
             
@@ -74,7 +87,7 @@
                 </ul>
             </div>
             <!-- legend layer list -->
-            <div class="legend-list">
+            <div class="legend-list" style="display:none">
                 <div class="buffer-header">
                     <h4>Legend</h4>
                     <span><i class="ion ion-md-close"></i></span>
@@ -89,7 +102,7 @@
             </div>
 
             <!-- leftSidebar start -->
-            <div class="sidebar leftSidebar">
+            <div class="sidebar leftSidebar" style="display:none">
                     <!-- <span class="expand-icon">
                         <i class="ion ion-ios-warning"></i>
                     </span> -->
@@ -124,7 +137,7 @@
            
                     <div class="hazard-acc">
                         <div id="sidebar-widget">
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header" id="heading-1">
                                     <h5>
                                         <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true"
@@ -179,12 +192,12 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="card">
                                 <div class="card-header" id="heading-2">
                                     <h5>
-                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false"
-                                        aria-controls="collapse-2">Exposure 
+                                        <a class=" updown" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false"
+                                        aria-controls="collapse-2">Gis 
                                             <i class="ion ion-md-information-circle"></i>
                                             <div class="info">
                                                 <div class="info-content">
@@ -194,26 +207,40 @@
                                         </a> 
                                     </h5>
                                 </div>
-                                <div id="collapse-2" class="collapse" data-parent="#sidebar-widget" aria-labelledby="heading-2">
+                                <div id="collapse-2" class="collapse show" data-parent="#sidebar-widget" aria-labelledby="heading-2">
                                     <div class="card-body">
                                         <ul class="list-content hazard-list">
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="OSM" name="exposure_1" value="customEx">
-                                                    <label class="custom-control-label" for="OSM">OSM </label>
+                                                    <input type="checkbox" class="custom-control-input gis" id="river" name="exposure_1" value="customEx">
+                                                    <label class="custom-control-label" for="river">River </label>
                                                 </div> 
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Land" name="exposure_1" value="customEx">
-                                                    <label class="custom-control-label" for="Land">Land Use Details</label>
+                                                    <input type="checkbox" class="custom-control-input gis" id="Land" name="exposure_1" value="customEx">
+                                                    <label class="custom-control-label" for="Land">Land Use </label>
+                                                </div> 
+                                            </li>
+
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="checkbox" class="custom-control-input gis" id="settle" name="exposure_1" value="customEx">
+                                                    <label class="custom-control-label" for="settle">Settlement </label>
+                                                </div> 
+                                            </li>
+
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="checkbox" class="custom-control-input gis" id="contour" name="exposure_1" value="customEx">
+                                                    <label class="custom-control-label" for="contour">Contour </label>
                                                 </div> 
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header" id="heading-3">
                                     <h5>
                                         <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false"
@@ -227,7 +254,7 @@
                                         </a> 
                                     </h5>
                                 </div>
-                                <div id="collapse-3" class="collapse" data-parent="#sidebar-widget" aria-labelledby="heading-3">
+                                <div id="collapse-3" class="collapse" data-parent="#sidebar-    dget" aria-labelledby="heading-3">
                                     <div class="card-body">
                                         <ul class="list-content hazard-list">
                                             <li class="active">
@@ -254,7 +281,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="card">
                                 <div class="card-header" id="heading-4">
                                     <h5>
@@ -311,7 +338,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header" id="heading-5">
                                     <h5>
                                         <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false"
@@ -349,7 +376,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -422,6 +449,7 @@
     <script src="{% static 'map/js/bootstrap.min.js' %}"></script>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
         crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>    
     <script src="{% static 'map/js/jquery.slimscroll.min.js' %}"></script>
     <script src="{% static 'map/js/select2.min.js' %}"></script>
     <script src="{% static 'map/js/d3.min.js' %}"></script>
