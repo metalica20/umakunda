@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from rest_framework import viewsets, views
 from django.core.serializers import serialize
-from .models import District, Municipality, River, Settlement, Contour
+from .models import District, Municipality, River, Settlement, Contour, LandResidental, LandUse, Road
 import json
 from rest_framework.response import Response
 
@@ -72,3 +72,39 @@ class ContourGeojson(views.APIView):
         # print(serializers)
         contour = json.loads(serializers)
         return Response(contour)
+
+
+class LandResidentalGeojson(views.APIView):
+    permission_classes = []
+
+    def get(self, request, *args, **kwargs):
+        serializers = serialize('geojson', LandResidental.objects.all(), geometry_field='boundary',
+                                fields=('pk', 'name',))
+
+        # print(serializers)
+        land_residental = json.loads(serializers)
+        return Response(land_residental)
+
+
+class LandUseGeojson(views.APIView):
+    permission_classes = []
+
+    def get(self, request, *args, **kwargs):
+        serializers = serialize('geojson', LandUse.objects.all(), geometry_field='boundary',
+                                fields=('pk', 'name',))
+
+        # print(serializers)
+        land_use = json.loads(serializers)
+        return Response(land_use)
+
+
+class RoadGeojson(views.APIView):
+    permission_classes = []
+
+    def get(self, request, *args, **kwargs):
+        serializers = serialize('geojson', Road.objects.all(), geometry_field='boundary',
+                                fields=('pk', 'name',))
+
+        # print(serializers)
+        road = json.loads(serializers)
+        return Response(road)

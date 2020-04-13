@@ -68,3 +68,28 @@ class Contour(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class LandResidental(models.Model):
+    name = models.CharField(max_length=100, null=True, blank=True)
+    boundary = models.MultiPolygonField(srid=4326, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class LandUse(models.Model):
+    name = models.CharField(max_length=100, null=True, blank=True)
+    boundary = models.MultiPolygonField(srid=4326, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Road(models.Model):
+    name = models.CharField(max_length=100, null=True, blank=True)
+    length = models.CharField(max_length=100, null=True, blank=True)
+    boundary = models.MultiLineStringField(srid=4326, null=True)
+
+    def __str__(self):
+        return self.name

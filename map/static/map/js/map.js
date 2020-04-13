@@ -3,16 +3,35 @@
     $(document).ready(function() {
 
        //map intialization start
-
+       
         map = L.map('mapid', {
-            zoomControl: false
+            zoomControl: false,
+            
 
-        }).setView([28.410728397237914, 84.4024658203125], 8); 
+        }).setView([28.410728397237914, 84.4024658203125], 8);
+        
+        L.easyPrint({
+            title: 'My awesome print button',
+            position: 'bottomright',
+            sizeModes: ['A4Portrait', 'A4Landscape']
+        }).addTo(map);
 
         map.createPane("tilePane").style.zIndex = 200;
         map.createPane("baseLayerPane").style.zIndex = 150;
-        map.createPane("topPane").style.zIndex = 701;
-       
+        map.createPane("topPane").style.zIndex = 430;
+        map.createPane("wmsPane").style.zIndex = 400;
+
+        var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+                        maxZoom: 20,
+                        subdomains:['mt0','mt1','mt2','mt3'],
+                        pane:"baseLayerPane"
+                    });
+                              
+        var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+                        maxZoom: 20,
+                        subdomains:['mt0','mt1','mt2','mt3'],
+                        pane:"baseLayerPane"
+                    });   
                 
        var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw', {
                 attribution: '&copy; <a href="https://www.mapbox.com">Mapbox</a>',
@@ -170,8 +189,66 @@
             // map.addLayer(contour)
 
 
+            //slope data 
+            geo_url = 'http://139.59.67.104:8080/geoserver/Naxa/wms';
+            slope = L.tileLayer.betterWms(geo_url, {
+                layers: "Naxa:umakunda_slope",
+                transparent: true,
+                format: 'image/png',
+                pane: "wmsPane"
+            });
 
-           
+           //land residental load map 
+
+           land_residental_url= 'http://localhost:8022/map/land-residental';
+
+            res_style = ({
+                fillColor: "green",
+                fillOpacity: 0.5,
+                weight: 2,
+                opacity: 1,
+                color: '#777171',
+                fill: true,
+
+            });
+
+            LoadMap('land_residental', land_residental_url,res_style);
+            // map.addLayer(land_residental)
+
+            //land use load map
+
+            land_use_url= 'http://localhost:8022/map/land-use';
+
+            use_style = ({
+                fillColor: "#4f677d",
+                fillOpacity: 0.5,
+                weight: 2,
+                opacity: 1,
+                color: '#777171',
+                fill: true,
+
+            });
+
+            LoadMap('land_use', land_use_url,use_style);
+            // map.addLayer(land_use)
+
+
+            // road layer load 
+
+            roadr_url= 'http://localhost:8022/map/road';
+
+            road_style = ({
+                fillColor: "green",
+                fillOpacity: 0,
+                weight: 1.9,
+                opacity: 1,
+                color: '#6b1a31',
+                fill: true,
+
+            });
+
+            LoadMap('road', roadr_url,road_style);
+            // map.addLayer(road)
 
 
             // loading selected layer of Gis category
@@ -221,7 +298,56 @@
                             map.removeLayer(district);
                             map.fitBounds(contour.getBounds());
                         }
-                    
+                    }else if(parent_id=='slope'){
+
+                        if (map.hasLayer(slope)){
+                            map.removeLayer(slope);
+                            map.addLayer(district);
+        
+                        }else{
+                            
+                            map.addLayer(slope);
+                            map.removeLayer(district);
+                            map.fitBounds(municipality.getBounds());
+                        }
+
+                    }else if(parent_id=='land_residental'){
+
+                        if (map.hasLayer(land_residental)){
+                            map.removeLayer(land_residental);
+                            map.addLayer(district);
+        
+                        }else{
+                            
+                            map.addLayer(land_residental);
+                            map.removeLayer(district);
+                            map.fitBounds(land_residental.getBounds());
+                        }
+
+                    }else if(parent_id=='land'){
+
+                        if (map.hasLayer(land_use)){
+                            map.removeLayer(land_use);
+                            map.addLayer(district);
+        
+                        }else{
+                            
+                            map.addLayer(land_use);
+                            map.removeLayer(district);
+                            map.fitBounds(land_use.getBounds());
+                        }
+                    }else if(parent_id=='road'){
+
+                        if (map.hasLayer(road)){
+                            map.removeLayer(road);
+                            map.addLayer(district);
+        
+                        }else{
+                            
+                            map.addLayer(road);
+                            map.removeLayer(district);
+                            map.fitBounds(road.getBounds());
+                        }    
                     
                     }else{
 
@@ -232,6 +358,73 @@
 
 
             });
+
+
+            $(".layer").on('click', function () {
+                
+                var parent_id = $(this).attr("id");
+                console.log(parent_id)
+
+                if(parent_id=='district'){
+
+                    if (map.hasLayer(district)){
+                        map.removeLayer(district);
+    
+                    }else{
+                        
+                        map.addLayer(district);
+                        map.fitBounds(district.getBounds());
+                    }
+                }else if(parent_id=='municipal'){
+
+                    if (map.hasLayer(municipality)){
+                        map.removeLayer(municipality);
+    
+                    }else{
+                        
+                        map.addLayer(municipality);
+                        map.fitBounds(municipality.getBounds());
+                    }    
+                }else if(parent_id=='grey_scale'){
+
+                    if (map.hasLayer(mapboxTiles)){
+                        map.removeLayer(mapboxTiles);
+    
+                    }else{
+                        
+                        map.addLayer(mapboxTiles);
+                        // map.fitBounds(municipality.getBounds());
+                    }    
+                }else if(parent_id=='street'){
+
+                    if (map.hasLayer(googleStreets)){
+                        map.removeLayer(googleStreets);
+    
+                    }else{
+                        
+                        map.addLayer(googleStreets);
+                        // map.fitBounds(municipality.getBounds());
+                    }    
+                
+                }else if(parent_id=='satellite'){
+
+                    if (map.hasLayer(googleSat)){
+                        map.removeLayer(googleSat);
+    
+                    }else{
+                        
+                        map.addLayer(googleSat);
+                        // map.fitBounds(municipality.getBounds());
+                    }        
+                    
+                }else{
+
+
+                }
+
+            });
+
+            
       
             
 

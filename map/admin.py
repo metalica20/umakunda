@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Province, District, Municipality, River, Settlement, Contour
+from .models import Province, District, Municipality, River, Settlement, Contour, LandResidental, LandUse, Road
 
 # Register your models here.
 admin.site.register(Province)
@@ -8,3 +8,6 @@ admin.site.register(District)
 admin.site.register(River)
 admin.site.register(Settlement)
 admin.site.register(Contour)
+admin.site.register(LandResidental)
+admin.site.register(LandUse)
+admin.site.register(Road)

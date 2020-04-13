@@ -61,17 +61,7 @@
             
             <!-- right navigation -->
             
-            <div class="expand-layer">
-                <span class="expand-icon" id="flood-expand">
-                    <i class="ion ion-md-funnel"></i>
-                </span>
-                <span class="expand-icon" id="capacity-expand">
-                    <i class="ion ion-md-funnel"></i>
-                </span>
-                <span class="expand-icon" id="vulnery-expand">
-                    <i class="ion ion-md-funnel"></i>
-                </span>
-            </div>
+            
             <!-- map layer list -->
             <div class="buffer-list">
                 <div class="buffer-header">
@@ -137,11 +127,11 @@
            
                     <div class="hazard-acc">
                         <div id="sidebar-widget">
-                            <!-- <div class="card">
+                            <div class="card">
                                 <div class="card-header" id="heading-1">
                                     <h5>
-                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true"
-                                            aria-controls="collapse-1">Hazard
+                                        <a class=" updown" role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true"
+                                            aria-controls="collapse-1">Layers
                                             <i class="ion ion-md-information-circle"></i>
                                             <div class="info">
                                                 <div class="info-content">
@@ -156,47 +146,54 @@
                                         <ul class="list-content hazard-list">
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Flood" name="example1" value="customEx">
-                                                    <label class="custom-control-label" for="Flood" data-tab="flood-1">Flood </label>
+                                                    <input type="checkbox" class="custom-control-input layer" id="district" name="example1" value="customEx" checked>
+                                                    <label class="custom-control-label" for="district" data-tab="flood-1">District Boundary </label>
                                                 </div> 
                                                 <span class="humanitarian-icon-Flood"></span>
                                             </li>
-                                            <li>
+
+                                            <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Earthquacke" name="example1" value="customEx">
-                                                    <label class="custom-control-label" for="Earthquacke">Earthquacke</label>
+                                                    <input type="checkbox" class="custom-control-input layer" id="municipal" name="example1" value="customEx" checked> 
+                                                    <label class="custom-control-label" for="municipal" data-tab="flood-1">Umakunda Municipal Boundary </label>
                                                 </div> 
-                                                <span class="humanitarian-icon-Earthquake"></span>
+                                                <span class="humanitarian-icon-Flood"></span>
                                             </li>
-                                            <li>
+
+                                            <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Landslide" name="example1" value="customEx">
-                                                    <label class="custom-control-label" for="Landslide">Landslide</label>
+                                                    <input type="checkbox" class="custom-control-input layer" id="grey_scale" name="example1" value="customEx" checked>
+                                                    <label class="custom-control-label" for="grey_scale" data-tab="flood-1">Grey Scale </label>
                                                 </div> 
-                                                <span class="humanitarian-icon-Landslide-mudslide"></span>
+                                                <span class="humanitarian-icon-Flood"></span>
                                             </li>
-                                            <li>
+
+                                            <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Fire" name="example1" value="customEx">
-                                                    <label class="custom-control-label" for="Fire">Fire</label>
+                                                    <input type="checkbox" class="custom-control-input layer" id="street" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="street" data-tab="flood-1">Street View map </label>
                                                 </div> 
-                                                <span class="humanitarian-icon-Fire"></span>
+                                                <span class="humanitarian-icon-Flood"></span>
                                             </li>
-                                            <li>
+
+                                            <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Draought" name="example1" value="customEx">
-                                                    <label class="custom-control-label" for="Draought">Draought</label>
+                                                    <input type="checkbox" class="custom-control-input layer" id="satellite" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="satellite" data-tab="flood-1">Satellite View Map </label>
                                                 </div> 
-                                                <span class="humanitarian-icon-Drought"></span>
+                                                <span class="humanitarian-icon-Flood"></span>
                                             </li>
+
+                                            
+                                            
                                         </ul>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="card">
                                 <div class="card-header" id="heading-2">
                                     <h5>
-                                        <a class=" updown" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false"
+                                        <a class="collasped updown" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false"
                                         aria-controls="collapse-2">Gis 
                                             <i class="ion ion-md-information-circle"></i>
                                             <div class="info">
@@ -207,7 +204,7 @@
                                         </a> 
                                     </h5>
                                 </div>
-                                <div id="collapse-2" class="collapse show" data-parent="#sidebar-widget" aria-labelledby="heading-2">
+                                <div id="collapse-2" class="collapse " data-parent="#sidebar-widget" aria-labelledby="heading-2">
                                     <div class="card-body">
                                         <ul class="list-content hazard-list">
                                             <li class="active">
@@ -216,10 +213,16 @@
                                                     <label class="custom-control-label" for="river">River </label>
                                                 </div> 
                                             </li>
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="checkbox" class="custom-control-input gis" id="road" name="exposure_1" value="customEx">
+                                                    <label class="custom-control-label" for="road">Road </label>
+                                                </div> 
+                                            </li>
                                             <li>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="checkbox" class="custom-control-input gis" id="Land" name="exposure_1" value="customEx">
-                                                    <label class="custom-control-label" for="Land">Land Use </label>
+                                                    <input type="checkbox" class="custom-control-input gis" id="land" name="exposure_1" value="customEx">
+                                                    <label class="custom-control-label" for="land">Land Use </label>
                                                 </div> 
                                             </li>
 
@@ -234,6 +237,20 @@
                                                 <div class="custom-control custom-radio">
                                                     <input type="checkbox" class="custom-control-input gis" id="contour" name="exposure_1" value="customEx">
                                                     <label class="custom-control-label" for="contour">Contour </label>
+                                                </div> 
+                                            </li>
+
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="checkbox" class="custom-control-input gis" id="slope" name="exposure_1" value="customEx">
+                                                    <label class="custom-control-label" for="slope">Slope </label>
+                                                </div> 
+                                            </li>
+
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="checkbox" class="custom-control-input gis" id="land_residental" name="exposure_1" value="customEx">
+                                                    <label class="custom-control-label" for="land_residental">Land Use Residental </label>
                                                 </div> 
                                             </li>
                                         </ul>
@@ -453,8 +470,9 @@
     <script src="{% static 'map/js/jquery.slimscroll.min.js' %}"></script>
     <script src="{% static 'map/js/select2.min.js' %}"></script>
     <script src="{% static 'map/js/d3.min.js' %}"></script>
-    <!-- <script src="js/chart.js"></script>
-	<script src="js/c3.js"></script> -->
+    <script src="{% static 'map/js/L.TileLayer.BetterWMS.js' %}"></script>
+    <script src="{% static 'map/js/bundle.js' %}"></script>
+	<!-- <script src="{% static 'map/js/bundle.js.map' %}"></script> -->
    <script src="{% static 'map/js/map.js' %}"></script>
     <script src="{% static 'map/js/script.js' %}"></script>
     
